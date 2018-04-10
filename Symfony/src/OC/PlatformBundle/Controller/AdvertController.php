@@ -25,36 +25,20 @@ class AdvertController extends Controller
         return new Response("l'URL de l'annonce d'id 5 est : ".$url);
     }
     
-    // On injecte la requête dans les arguments de la méthode
-    /*public function viewAction($id, Request $request) // on a maintenant accès à la requête HTTP via $request
+    public function viewAction($id, Request $request)
     {
-        // $id vaut 5 si l'on a appelé l'URL /platform/advert/5
-        
-        // ici, on récupère depuis la base de données
-        // l'annonce correspondant à l'id $id.
-        // puis on passera l'annonce à la vue pour qu'elle 
-        // puisse l'afficher
-        
-        // récupération du paramètre tag:
+        // on récupère notre paramètre tag
         $tag = $request->query->get('tag');
         
-        return new Response("Affichage de l'annonce d'id : ".$id.", avec le tag : ".$tag);
-    }*/
-    
-    // manipulation de l'objet Response. Méthode longue:
-    public function viewAction($id)
-    {
-        // on crée la réponse sans lui donner de contenu pour le moment
-        $response = new Response();
+        // on utilise le raccourci: il crée un objet Response
+        // et lui donne comme contenu le contenu du template
+        return $this->get('templating')->renderResponse(
+            "OCPlatformBundle:Advert:view.html.twig", array(
+                'id' => $id,
+                'tag'=> $tag
+            )
+        );
         
-        // on définit le contenu
-        $response->setContent("<marquee><h1>Ceci est une page d'erreur 404</h1></marquee>");
-        
-        // on définit le code HTTP à "not found" (erreur 404)
-        $response->setStatusCode(Response::HTTP_NOT_FOUND);
-        
-        // on retourne la réponse
-        return $response;
     }
     
     public function viewSlugAction($slug, $year, $format)

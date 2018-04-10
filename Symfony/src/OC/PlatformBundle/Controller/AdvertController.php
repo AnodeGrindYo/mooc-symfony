@@ -32,7 +32,7 @@ class AdvertController extends Controller
         
         // on utilise le raccourci: il crée un objet Response
         // et lui donne comme contenu le contenu du template
-        return $this->get('templating')->renderResponse(
+        return $this->render(
             "OCPlatformBundle:Advert:view.html.twig", array(
                 'id' => $id,
                 'tag'=> $tag

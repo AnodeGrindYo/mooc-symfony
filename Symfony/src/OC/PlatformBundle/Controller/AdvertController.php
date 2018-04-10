@@ -27,18 +27,9 @@ class AdvertController extends Controller
     
     public function viewAction($id, Request $request)
     {
-        // on récupère notre paramètre tag
-        $tag = $request->query->get('tag');
+        $url = $this->get('router')->generate('oc_platform_home');
         
-        // on utilise le raccourci: il crée un objet Response
-        // et lui donne comme contenu le contenu du template
-        return $this->render(
-            "OCPlatformBundle:Advert:view.html.twig", array(
-                'id' => $id,
-                'tag'=> $tag
-            )
-        );
-        
+        return $this->redirect($url);
     }
     
     public function viewSlugAction($slug, $year, $format)

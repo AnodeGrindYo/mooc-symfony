@@ -25,9 +25,17 @@ class AdvertController extends Controller
         return new Response("l'URL de l'annonce d'id 5 est : ".$url);
     }
     
+    // manip de la session
     public function viewAction($id, Request $request)
     {
-        return new JsonResponse(array('id' => $id));
+        // récupération de la session
+        $session = $request->getSession();
+        
+        // on récupère le contenu de la variable user_id
+        $session->set('user_id', 91);
+        
+        // On n'oublie pas de renvoyer une réponse
+        return new Response("<body>je suis une page de test pas très loquace</body>");
     }
     
     public function viewSlugAction($slug, $year, $format)

@@ -1,0 +1,4 @@
+# ajout du prefice /platform lors de l'import de fichiers
+oc_platform:
+    resource: "@OCPlatformBundle/resources/config/routing.yml"
+    prefix: /platform

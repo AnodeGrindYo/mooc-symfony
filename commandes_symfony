@@ -1,0 +1,23 @@
+// verifier que php est bien install√
+php -v
+
+// creer un nouveau projet symfony
+php symfony.phar new Symfony 3.3.2
+// s'il y a un probleme de certificat ssl:
+https://stackoverflow.com/questions/21114371/php-curl-error-code-60
+// ou
+composer create-project symfony/framework-standard-edition my_project_name
+
+// creer un bundle
+// a la racine du projet symfony:
+php bin/console generate:bundle
+
+// si il y a un probleme "checking the bundle is autoloaded FALSE":
+// voir:
+https://silentkernel.fr/symfony-3-3-probleme-lors-de-la-creation-de-bundle-generatebundle-autoload-failed/
+
+// emplacement des logs du mode prod:
+var/log/prod.log
+
+// Vider le cache:
+php bin/console cache:clear --env=prod

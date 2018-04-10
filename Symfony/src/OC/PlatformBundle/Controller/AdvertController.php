@@ -27,7 +27,14 @@ class AdvertController extends Controller
     
     public function viewAction($id, Request $request)
     {
-        return $this->redirectToRoute('oc_platform_home');
+        // on crée la réponse en JSON grâce à la fonction json_encode()
+        $response = new Response(json_encode(array('id' => $id)));
+        
+        // ici, nous définissons le content-type pour dire au navigateur
+        // que l'on envoie du JSON et non du HTML
+        $response->headers->set('Content-Type', 'application/json');
+        
+        return $response;
     }
     
     public function viewSlugAction($slug, $year, $format)

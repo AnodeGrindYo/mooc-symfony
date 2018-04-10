@@ -27,9 +27,7 @@ class AdvertController extends Controller
     
     public function viewAction($id, Request $request)
     {
-        $url = $this->get('router')->generate('oc_platform_home');
-        
-        return $this->redirect($url);
+        return $this->redirectToRoute('oc_platform_home');
     }
     
     public function viewSlugAction($slug, $year, $format)

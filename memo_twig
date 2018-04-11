@@ -18,3 +18,17 @@
 
 // concatener
 {{ var1 ~ var2 ~ " une chaine en dur" }}
+
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+// filtres utiles
+
+upper : met tout en majuscule
+striptags: supprime toutes les balises XML
+date: formate la date selon le format qui est donne en argument (ex: {{ date|date('d/m/Y') }}  ou, pour la date d'aujourd'hui : {{ "now"|date('d/m/Y') }}
+format: insere des variables dans un texte de la meme maniere que printf (ex: {{il y a %s pommes et %s poires"|format(153, nb_poires) }}
+length: retourne le nombre d'elements d'un tableau ou le nombre de caracteres d'une chaine
+
+documentation de tous les filtres disponibles:
+http://twig.sensiolabs.org/doc/filters/index.html
+
+

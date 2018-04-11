@@ -1,0 +1,20 @@
+// afficher une variable
+{{ variable }}
+
+// afficher l'index d'un tableau
+{{ tableau['clef'] }}
+
+// afficher l'attribut d'un objet, dont le getter respecte la convention $objet->getAttribut
+{{ objet.attribut }}
+
+// afficher une variable en lui applicant un filtre (ici "upper")
+{{ variable|upper }}
+
+// afficher une variable en combinant les filtres (striptags supprime les balises html, title met la première lettre de chaque mot en majuscule
+{{ variable|striptags|title }} // correspond a <?php echo ucwords(strip_tags($variable)); ?>
+
+// utiliser un filtre avec des arguments. Pour l'exemple, date est un obj du type Datetime
+{{ date|date('d/m/Y') }}
+
+// concatener
+{{ var1 ~ var2 ~ " une chaine en dur" }}

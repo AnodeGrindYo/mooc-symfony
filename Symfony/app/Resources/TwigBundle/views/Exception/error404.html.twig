@@ -1,0 +1,18 @@
+{# Symfony/app/Resources/TwigBundle/views/Exception/error.html.twig #}
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+       <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Une erreur est survenue: {{ status_text }}</title>
+    </head>
+    <body>
+        <h1>Oops! Une erreur est survenue</h1>
+        <h2>le serveur a renvoyé : "{{ status_code }} {{ status_text }}"</h2>
+        <div>
+            Quelque chose est cassé... mais qu'avez-vous fait???
+            <p>Pas la peine de nous envoyer un mail, personne ne s'occupe de ce site. Bien évidemment, nous sommes désolé pour le traumatisme occasionné (mais entre nous, vous ne l'auriez pas un peu cherché?).</p>
+        </div>
+    </body>
+</html>

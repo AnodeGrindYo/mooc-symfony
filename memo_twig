@@ -31,4 +31,64 @@ length: retourne le nombre d'elements d'un tableau ou le nombre de caracteres d'
 documentation de tous les filtres disponibles:
 http://twig.sensiolabs.org/doc/filters/index.html
 
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+les variables globales.
+par defaut, symfony enregistre une variable globale {{ app }} dans twig. Voici la liste des attributs qui sont donc disponnible dans tous les templates
+
+{{ app.request }} : la requete "request" 
+{{ app.session }} : le service "session"
+{{ app.environment }} :  l'environnement courant ("dev", "prod", et ceux qui ont ete definis)
+{{ app.debug }} : True si le mode debug est actif, sinon false
+{{ app.user }} : l'utilisateur courant
+
+
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+ur enregistrer nos propres variables globales, pour qu'elles soient accessibles dans toutes les vues, il faut éditer le fichier:
+app/config/config.yml
+de la facon suivante:
+
+twig:
+    globals:
+        webmaster: moi-meme
+
+ainsi, la variable {{ webmaster }} sera injectee dans toutes les vues
+
+mais la bonne pratique est de definir les variables globales plutot dans le fichier des parametres
+app/config/parameters.yml
+
+parameters:
+    app_webmaster: moi-meme
+
+puis dans le fichier app/config/config.yml
+twig:
+    globals:
+        webmaster: "%app_webmaster%"
+
+... ca separe la valeur du parametre stockee dans un fichier simple, de l'utilisation de ce parametre
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+structures de controle et expressions
+
+condition: {% if %} {% elseif %} {% else %} {% endif %}
+boucle: {% for element in liste %} ... {% endfor %}
+definition: {% set foo = 'bar' %}
+
+
+precision sur la boucle {% for %}: elle definit une variable loop qui contient les attributs suivants:
+{{ loop.index }} : numero de l'iteration courante. commence par 1
+{{ loop.index0 }} : meme chose mais en commencant par l'index 0
+{{ loop.revindex }} : nbre d'iterations restantes avant la fin de la boucle. termine par 1
+{{ loop.revindex0 }} : meme chose mais terminepar 0
+{{ loop.first }} : true si c'est la premiere iteration. sinon false
+{{ loop.last }} : true si c'est la derniere iteration, sinon false
+{{ loop.length }} : nombre total d'iteration dans la boucle
+
+
+tests utiles:
+
+defined: verifier si une variable existe : {% if var is defined %} ... {% endif %}
+even/odd: permet de tester si un nombre est pair/impair
+
+
+
 

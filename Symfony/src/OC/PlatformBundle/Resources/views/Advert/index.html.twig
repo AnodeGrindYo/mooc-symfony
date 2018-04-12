@@ -1,16 +1,12 @@
 {# src/OC/PlatformBundle/Resources/views/Advert/index.html.twig #}
 
 
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>wesh, c'est ma première page en twig !</title>
-    </head>
-    <body>
-        <h1>Hello {{ nom }} !</h1>
-        
-        <p>
-            Le Hello World est un grand classique en programmation. C'est peut-être un détail pour vous, mais pour nous ça veut dire beaucoup: cela veut dire que nous avons réussi à exécuter le programme pour accomplir une tâche simple: afficher ce putaing d'Hello World !
-        </p>
-    </body>
-</html>
+{% extends "OCPlatformBundle::layout.html.twig" %}
+
+
+{% block title %}{{ parent() }} - Index{% endblock %}
+
+
+{% block body %}
+    La plateforme est un peu vide pour le moment, mais elle va se remplir... patience!
+{% endblock %}

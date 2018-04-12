@@ -1,0 +1,60 @@
+{# app/Resources/views/layout.html.twig #}
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        {# bloc title avec CO Platform comme texte par défaut #}
+        <title>{% block title %}OC Platform{% endblock %}</title>
+        
+        {% block stylesheets %}
+            {# on charge le CSS de bootstrap depuis le site directement #}
+            <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        {% endblock %}
+    </head>
+    <body>
+        <div class="container">
+           <div id="header" class="jumbotron">
+               <h1>Ma plateforme d'annonces</h1>
+               <p>
+                   Ce projet est propulsé par Symfony.
+               </p>
+           </div>
+            
+            <div class="row">
+                <div id="menu" class="col-md-3">
+                    <h3>Les annonces</h3>
+                    <ul class="nav nav-pills nav-stacked">
+                       {# ici, on utilise la fonction {{ path }} pour faire des liens vers d'autres routes #}
+                        <li><a href="{{ path(oc_platform_home) }}">Accueil</a></li>
+                        <li><a href="{{ path('oc_platform_add') }}">Ajouter une annonce</a></li>
+                    </ul>
+                    
+                    <h4>Dernières annonces</h4>
+                    {# inclusion de la méthode menu du controller Advert du bundle OCPlatformBundle, avec l'argument nombre définit à 3 #}
+                    {{ render(controller("OCPlatformBundle:Advert:menu", {"limit": 3})) }}
+                </div>
+                <div id="content" class="col-md-9">
+                   {# creation du bloc body sans contenu par défaut #}
+                    {% block body %}
+                    {% endblock %}
+                </div>
+            </div>
+            
+            <hr>
+            
+            <footer>
+                <p>The sky's the limit &copy; {{ 'now'|date('Y') }} and beyond.</p>
+            </footer>
+            
+        </div>
+        
+        {% block javascript %}
+            {# ça, c'est pour pouvoirse servirdes fonctionnalités de bootdtrap twitter #}
+            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+            <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+        {% endblock %}
+    </body>
+</html>

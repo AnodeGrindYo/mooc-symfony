@@ -1,20 +1,21 @@
 {# src/OC/PlatformBundle/Resources/views/layout.html.twig #}
 
+{% extends "::layout.html.twig" %}
 
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>{% block title %}OC Platform</title>
-    </head>
-    <body>
-       
-       <div id="menu">
-           {{ render(controller("OCPlatformBundle:Advert:menu")) }}
-       </div>
-        
-        {% block body %}
-        {% endblock %}
-        
-    </body>
-</html>
+
+{% block title %}
+    Annonces - {{ paernt() }}
+{% endblock %}
+
+
+{% block body %}
+    
+    {# On définit un sous-titre commun à toutes les pages du bundle #}
+    <h1>Annonces</h1>
+    
+    <hr>
+    
+    {# on définit un nouveau bloc que les vues du bundle pourront remplir #}
+    {% block ocplatform_body %}
+    {% endblock %}
+{% endblock %}

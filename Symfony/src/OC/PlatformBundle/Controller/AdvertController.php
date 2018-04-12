@@ -82,4 +82,20 @@ class AdvertController extends Controller
         
         return $this->render('OCPlatformBundle:Advert:delete.html.twig');
     }
+    
+    public function menuAction()
+    {
+        // on fixe en dur une liste, mais par la suite, elle sera récupérée depuis la BDD
+        $listAdverts = array(
+            array('id' => 2, 'title' => 'recherche développeur Symfony'),
+            array('id' => 5, 'title' => 'mission de webmaster'),
+            array('id' => 9, 'title' => 'offre de stage webdesigner')
+        );
+        
+        return $this->render('OCPlatformBundle:Advert:menu.html.twig', array(
+            // tout l'intérêt est ici : le controller passe
+            // les variables nécessaires au template !!!
+            'listAdverts' => $listAdverts
+        ));
+    }
 }

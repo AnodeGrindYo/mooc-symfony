@@ -11,7 +11,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class AdvertController extends Controller
 {
-    public function indexAction()
+    public function indexAction($page)
     {
         // on ne sait pas combien de pages il y a
         // mais on sait qu'une page doit être supérieure ou égale à 1
@@ -23,17 +23,53 @@ class AdvertController extends Controller
         
         // ici on récupérera la liste des annonces, puis on la passera au template
         
+        // Notre liste d'annonce en dur
+        $listAdverts = array(
+          array(
+            'title'   => 'Recherche développpeur Symfony',
+            'id'      => 1,
+            'author'  => 'Alexandre',
+            'content' => 'Nous recherchons un développeur Symfony débutant sur Lyon. Blabla…',
+            'date'    => new \Datetime()),
+          array(
+            'title'   => 'Mission de webmaster',
+            'id'      => 2,
+            'author'  => 'Hugo',
+            'content' => 'Nous recherchons un webmaster capable de maintenir notre site internet. Blabla…',
+            'date'    => new \Datetime()),
+          array(
+            'title'   => 'Offre de stage webdesigner',
+            'id'      => 3,
+            'author'  => 'Mathieu',
+            'content' => 'Nous proposons un poste pour webdesigner. Blabla…',
+            'date'    => new \Datetime())
+        );
+        
         // Mais pour l'instant, on ne fait qu'appeler le template
-        return $this->render('OCPlatformBundle:Advert:index.html.twig');
+        return $this->render('OCPlatformBundle:Advert:index.html.twig', array(
+            'listAdverts' => $listAdverts
+        ));
     }
     
     // manip de la session
     public function viewAction($id)
     {
         // ici, on va récupérer l'annonce correspondant à l'id $id
-       return $this->render('OCPlatformBundle:Advert:view.html.twig', array(
+        
+        // mais en attendant, on va mettre des trucs en dur
+        $advert = array(
+          'title'   => 'Recherche développpeur Symfony',
+          'id'      => $id,
+          'author'  => 'Alexandre',
+          'content' => 'Nous recherchons un développeur Symfony débutant sur Lyon. Blabla…',
+          'date'    => new \Datetime()
+        );
+        return $this->render('OCPlatformBundle:Advert:view.html.twig', array(
+            'advert' => $advert
+        ));
+       /*return $this->render('OCPlatformBundle:Advert:view.html.twig', array(
            'id' => $id
-       ));
+       ));*/
     }
     
     public function viewSlugAction($slug, $year, $format)
@@ -71,7 +107,9 @@ class AdvertController extends Controller
             return $this->redirectToRoute('oc_platform_view', array('id' => 5));
         }
         
-        return $this->render('OCPlatformBundle:Advert:edit.html.twig');
+        return $this->render('OCPlatformBundle:Advert:edit.html.twig', array(
+            'advert' => $advert
+        ));
     }
     
     public function deleteAction($id)
@@ -83,7 +121,7 @@ class AdvertController extends Controller
         return $this->render('OCPlatformBundle:Advert:delete.html.twig');
     }
     
-    public function menuAction()
+    public function menuAction($limit)
     {
         // on fixe en dur une liste, mais par la suite, elle sera récupérée depuis la BDD
         $listAdverts = array(

@@ -81,7 +81,7 @@ class AdvertController extends Controller
     
     public function addAction(Request $request)
     {
-        // la gestion d'un formulaire est particulière, mais l'idée set la suivante :
+        // la gestion d'un formulaire est particulière, mais l'idée est la suivante :
         
         // Si la requête est en POST, c'est que le visiteur a soumis le formulaire
         if ($request->isMethod('POST')) {

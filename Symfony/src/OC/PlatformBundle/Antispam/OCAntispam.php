@@ -5,6 +5,19 @@ namespace OC\PlatformBundle\Antispam;
 
 class OCAntispam
 {
+    private $mailer;
+    private $locale;
+    private $minLength;
+    
+    public function __construct(\Swift_Mailer $mailer, $locale, $minLength)
+    {
+        // on récupère les variables définies dans
+        // services.yml
+        $this->mailer    = $mailer;
+        $this->locale    = $locale;
+        $this->minLength = (int) $minLength;
+    }
+    
     /**
      * Vérifie si le texte est un spam ou non
      * en vérifiant que le texte de l'annonce

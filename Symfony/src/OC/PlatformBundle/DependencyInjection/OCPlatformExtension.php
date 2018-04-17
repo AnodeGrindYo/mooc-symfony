@@ -15,6 +15,12 @@ use Symfony\Component\DependencyInjection\Loader;
 class OCPlatformExtension extends Extension
 {
     /**
+     * la méthode load() est automatiquement exécutée par
+     * Symfony lorsque le bundle est chargé. Dans cette 
+     * méthode, on charge le fichier de configuration
+     * services.yml, ce qui permet d'enregistrer la 
+     * définition des services qu'il contient dans le 
+     * conteneur de services
      * {@inheritdoc}
      */
     public function load(array $configs, ContainerBuilder $container)

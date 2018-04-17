@@ -21,3 +21,31 @@ var/log/prod.log
 
 // Vider le cache:
 php bin/console cache:clear --env=prod
+
+// installer un bundle avec Composer
+// 1) aller sur https://packagist.org et chercher le nom du bundle
+// 2) rajouter la ligne dans la section require du fichier composer.json
+// exemple: "doctrine/doctrine-fixtures-bundle": "~2.3"
+// 3) mettre a jour les dependances avec la commande:
+php composer.phar update
+// 4) enregistrer le bundle dans le kernel (app/AppKernel.php):
+if (in_array($this->getEnvironment(), array('dev', 'test'))) {
+	// ...
+	$bundles[] = new Donctrine\Bundle\FixturesBundle\DoctrineFixtureBundle();
+}
+
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+// avoir la liste des services disponibles:
+php bin/console debug:container
+
+// acceder a $container dans son code php:
+// ca depend...
+// dans le cas des controller, le container est dispo dans l'attribut $container,
+// depuis un controller, on peut donc ecrire:
+<?php
+$this->container->get('nom_du_service');
+
+// par exemple:
+$mailer = $this->container->get('mailer');
+
+// raccourcis: $this->get()
